@@ -5,9 +5,7 @@ import me.anticode.astro_reforged.item.HighGravityBombItem;
 import me.anticode.astro_reforged.item.LowGravityBombItem;
 import me.anticode.astro_reforged.item.MauveineArmorItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -28,16 +26,16 @@ public class AstroItems {
 
     public static void initialize() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register((itemGroup) -> {
-            itemGroup.add(MAUVEINE_INGOT);
+            itemGroup.addAfter(new ItemStack(Items.NETHERITE_INGOT), MAUVEINE_INGOT);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register((itemGroup) -> {
-           itemGroup.add(LOW_GRAVITY_BOMB);
-           itemGroup.add(HIGH_GRAVITY_BOMB);
+           itemGroup.addAfter(new ItemStack(Items.CROSSBOW), LOW_GRAVITY_BOMB);
+           itemGroup.addAfter(new ItemStack(Items.CROSSBOW), HIGH_GRAVITY_BOMB);
 
-           itemGroup.add(MAUVEINE_HELMET);
-           itemGroup.add(MAUVEINE_CHESTPLATE);
-           itemGroup.add(MAUVEINE_LEGGINGS);
-           itemGroup.add(MAUVEINE_BOOTS);
+           itemGroup.addAfter(new ItemStack(Items.NETHERITE_BOOTS), MAUVEINE_BOOTS);
+           itemGroup.addAfter(new ItemStack(Items.NETHERITE_BOOTS), MAUVEINE_LEGGINGS);
+           itemGroup.addAfter(new ItemStack(Items.NETHERITE_BOOTS), MAUVEINE_CHESTPLATE);
+           itemGroup.addAfter(new ItemStack(Items.NETHERITE_BOOTS), MAUVEINE_HELMET);
         });
     }
 }
