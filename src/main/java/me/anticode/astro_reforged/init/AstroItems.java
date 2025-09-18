@@ -9,7 +9,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class AstroItems {
-    public static final Item MAUVEINE = register(new Item(new Item.Settings()), "mauveine");
+    public static final Item MAUVEINE_INGOT = register(new Item(new Item.Settings()), "mauveine_ingot");
 
     public static Item register (Item item, String id) {
         Identifier identifier = AstroReforged.getId(id);
@@ -18,7 +18,7 @@ public class AstroItems {
 
     public static void initialize() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register((itemGroup) -> {
-            itemGroup.add(MAUVEINE);
+            itemGroup.add(MAUVEINE_INGOT);
         });
     }
 }
