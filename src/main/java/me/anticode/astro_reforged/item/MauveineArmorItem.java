@@ -35,7 +35,7 @@ public class MauveineArmorItem extends ArmorItem {
             ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
             builder.put(EntityAttributes.GENERIC_ARMOR, new EntityAttributeModifier(uuid, "Armor modifier", this.getProtection(), EntityAttributeModifier.Operation.ADDITION));
             builder.put(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, new EntityAttributeModifier(uuid, "Armor toughness", this.getToughness(), EntityAttributeModifier.Operation.ADDITION));
-            builder.put(AstroAttributes.GRAVITY, new EntityAttributeModifier(uuid, "Mauveine gravity reduction", -0.3, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+            builder.put(AstroAttributes.GRAVITY, new EntityAttributeModifier(uuid, "Mauveine gravity reduction", -0.2, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
             return builder.build();
         }
         return super.getAttributeModifiers(stack, slot);
