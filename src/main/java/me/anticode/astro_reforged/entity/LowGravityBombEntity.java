@@ -13,12 +13,8 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.world.World;
 
 public class LowGravityBombEntity extends ThrownItemEntity {
-    public LowGravityBombEntity(LivingEntity livingEntity, World world) {
-        super(AstroEntities.LOW_GRAVITY_BOMB, livingEntity, world);
-    }
-
-    public LowGravityBombEntity(EntityType<Entity> entityType, World world) {
-        super((EntityType<? extends ThrownItemEntity>) entityType, world);
+    public LowGravityBombEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
+        super(entityType, world);
     }
 
     @Override

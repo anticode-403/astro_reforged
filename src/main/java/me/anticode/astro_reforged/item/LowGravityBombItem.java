@@ -2,6 +2,7 @@ package me.anticode.astro_reforged.item;
 
 import me.anticode.astro_reforged.entity.HighGravityBombEntity;
 import me.anticode.astro_reforged.entity.LowGravityBombEntity;
+import me.anticode.astro_reforged.init.AstroEntities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -31,7 +32,8 @@ public class LowGravityBombItem extends Item {
                 true
         );
         if (!world.isClient() && !user.getItemCooldownManager().isCoolingDown(this)) {
-            LowGravityBombEntity gravityBombEntity = new LowGravityBombEntity(user, world);
+            LowGravityBombEntity gravityBombEntity = new LowGravityBombEntity(AstroEntities.LOW_GRAVITY_BOMB, world);
+            gravityBombEntity.setOwner(user);
             gravityBombEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 3.0F, 0.0F);
             world.spawnEntity(gravityBombEntity);
             user.getItemCooldownManager().set(this, 250);
