@@ -50,7 +50,7 @@ public class AstroReforgedDataGenerator implements DataGeneratorEntrypoint {
 
         @Override
         public void generateTranslations(TranslationBuilder translationBuilder) {
-            translationBuilder.add(AstroReforged.getTranslation("attribute", "generic.gravity_reduction"), "Gravity");
+            translationBuilder.add(AstroReforged.getTranslation("attribute", "generic.gravity_reduction"), "Gravity Reduction");
             translationBuilder.add(AstroItems.MAUVEINE_INGOT, "Mauveine Ingot");
             translationBuilder.add(AstroItems.LOW_GRAVITY_BOMB, "Low Gravity Bomb");
             translationBuilder.add(AstroItems.HIGH_GRAVITY_BOMB, "High Gravity Bomb");
