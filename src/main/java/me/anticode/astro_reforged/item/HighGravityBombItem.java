@@ -1,7 +1,6 @@
 package me.anticode.astro_reforged.item;
 
-import me.anticode.astro_reforged.entity.HighGravityBombEntity;
-import me.anticode.astro_reforged.init.AstroEntities;
+import me.anticode.astro_reforged.entity.GravityBombEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -31,9 +30,9 @@ public class HighGravityBombItem extends Item {
                 true
         );
         if (!world.isClient() && !user.getItemCooldownManager().isCoolingDown(this)) {
-            HighGravityBombEntity gravityBombEntity = new HighGravityBombEntity(AstroEntities.HIGH_GRAVITY_BOMB, world);
-            gravityBombEntity.setOwner(user);
-            gravityBombEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 3.0F, 0.0F);
+            GravityBombEntity gravityBombEntity = new GravityBombEntity(GravityBombEntity.GravityBombType.HIGH, world, user);
+            gravityBombEntity.setItem(stack);
+            gravityBombEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 0.5F, 0.0F);
             world.spawnEntity(gravityBombEntity);
             user.getItemCooldownManager().set(this, 250);
         }
