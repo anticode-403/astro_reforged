@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "astro_reforged",
+  "version": "${version}",
+  "name": "Astro! Reforged",
+  "description": "A mod based around the material Mauveine which is used for gravity-defying armor.",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/astro_reforged/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "me.anticode.astro_reforged.client.AstroReforgedDataGenerator"
+    ],
+    "client": [
+      "me.anticode.astro_reforged.client.AstroReforgedClient"
+    ],
+    "main": [
+      "me.anticode.astro_reforged.AstroReforged"
+    ]
+  },
+  "mixins": [
+    "astro_reforged.mixins.json",
+    {
+      "config": "astro_reforged.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
