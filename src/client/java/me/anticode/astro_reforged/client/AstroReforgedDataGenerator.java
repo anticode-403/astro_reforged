@@ -40,6 +40,8 @@ public class AstroReforgedDataGenerator implements DataGeneratorEntrypoint {
             itemModelGenerator.register(AstroItems.MAUVEINE_LEGGINGS, Models.GENERATED);
             itemModelGenerator.register(AstroItems.MAUVEINE_CHESTPLATE, Models.GENERATED);
             itemModelGenerator.register(AstroItems.MAUVEINE_HELMET, Models.GENERATED);
+
+            itemModelGenerator.register(AstroItems.MAUVEINE_SABRE, Models.GENERATED);
         }
     }
 
@@ -54,10 +56,13 @@ public class AstroReforgedDataGenerator implements DataGeneratorEntrypoint {
             translationBuilder.add(AstroItems.MAUVEINE_INGOT, "Mauveine Ingot");
             translationBuilder.add(AstroItems.LOW_GRAVITY_BOMB, "Low Gravity Bomb");
             translationBuilder.add(AstroItems.HIGH_GRAVITY_BOMB, "High Gravity Bomb");
+
             translationBuilder.add(AstroItems.MAUVEINE_BOOTS, "Mauveine Boots");
             translationBuilder.add(AstroItems.MAUVEINE_LEGGINGS, "Mauveine Leggings");
             translationBuilder.add(AstroItems.MAUVEINE_CHESTPLATE, "Mauveine Chestplate");
             translationBuilder.add(AstroItems.MAUVEINE_HELMET, "Mauveine Helmet");
+
+            translationBuilder.add(AstroItems.MAUVEINE_SABRE, "Mauveine Sabre");
         }
     }
 }
