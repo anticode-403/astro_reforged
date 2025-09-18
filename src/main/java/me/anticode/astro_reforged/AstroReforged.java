@@ -1,5 +1,6 @@
 package me.anticode.astro_reforged;
 
+import me.anticode.astro_reforged.init.AstroAttributes;
 import me.anticode.astro_reforged.init.AstroItems;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
@@ -14,9 +15,14 @@ public class AstroReforged implements ModInitializer {
     @Override
     public void onInitialize() {
         AstroItems.initialize();
+        AstroAttributes.initialize();
     }
 
     public static Identifier getId (String name) {
         return new Identifier(modID, name);
+    }
+
+    public static String getTranslation (String type, String name) {
+        return type + "." + modID + "." + name;
     }
 }
