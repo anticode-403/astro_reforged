@@ -4,9 +4,14 @@
   "version": "${version}",
   "name": "Astro! Reforged",
   "description": "A mod based around the material Mauveine which is used for gravity-defying armor.",
-  "authors": [],
-  "contact": {},
-  "license": "All-Rights-Reserved",
+  "authors": [
+    "anticode",
+    "Prismatica"
+  ],
+  "contact": {
+    "anticode": "rileyanticode@gmail.com"
+  },
+  "license": "MIT",
   "icon": "assets/astro_reforged/icon.png",
   "environment": "*",
   "entrypoints": {
