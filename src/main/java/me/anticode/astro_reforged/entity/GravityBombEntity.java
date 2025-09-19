@@ -1,6 +1,7 @@
 package me.anticode.astro_reforged.entity;
 
 import gravity_changer.api.GravityChangerAPI;
+import me.anticode.astro_reforged.api.AstroLivingEntityInterface;
 import me.anticode.astro_reforged.init.AstroEntities;
 import me.anticode.astro_reforged.init.AstroItems;
 import net.fabricmc.api.EnvType;
@@ -24,12 +25,14 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GravityBombEntity extends ThrownItemEntity {
     private boolean hasLanded = false;
     private final int bomb_duration = 200;
     private int active_duration = 0;
+    private List<Entity> moddedEntities = new ArrayList<>();
     protected GravityBombType gravityBombType = GravityBombType.HIGH;
     public enum GravityBombType {
         HIGH (0),
@@ -126,23 +129,37 @@ public class GravityBombEntity extends ThrownItemEntity {
             active_duration++;
             getWorld().sendEntityStatus(this, (byte)5);
             List<Entity> nearbyEntities = getWorld().getOtherEntities(this, Box.of(this.getPos(), 20D, 20D, 20D));
-            for (Entity entity : nearbyEntities) {
+            List<Entity> unmodifiedEntities = new ArrayList<>(nearbyEntities);
+            unmodifiedEntities.removeAll(moddedEntities);
+            List<Entity> oldModifiedEntities = new ArrayList<>(moddedEntities);
+            oldModifiedEntities.removeAll(nearbyEntities);
+            for (Entity entity : oldModifiedEntities) {
+                if (entity instanceof LivingEntity) {
+                    ((AstroLivingEntityInterface)entity).astroReforged$removeGravityBombModifier(this.getUuid());
+                    moddedEntities.remove(entity);
+                }
+            }
+            for (Entity entity : unmodifiedEntities) {
                 if (entity instanceof LivingEntity) {
                     switch (gravityBombType) {
                         case HIGH -> {
-                            GravityChangerAPI.setBaseGravityStrength(entity, 12);
+                            ((AstroLivingEntityInterface)entity).astroReforged$setGravityBombModifier(12, this.getUuid());
                         }
                         case LOW ->  {
-                            GravityChangerAPI.setBaseGravityStrength(entity, 0.1);
+                            ((AstroLivingEntityInterface)entity).astroReforged$setGravityBombModifier(0.5, this.getUuid());
                         }
                         case ANTI -> {
-                            GravityChangerAPI.setBaseGravityStrength(entity, -0.1);
+                            ((AstroLivingEntityInterface)entity).astroReforged$setGravityBombModifier(-0.1, this.getUuid());
                         }
                     }
+                    moddedEntities.add(entity);
                 }
             }
             if (active_duration >= bomb_duration) {
                 getWorld().sendEntityStatus(this, (byte)10);
+                for (Entity entity : moddedEntities) {
+                    ((AstroLivingEntityInterface)entity).astroReforged$removeGravityBombModifier(this.getUuid());
+                }
                 this.discard();
             }
         }
