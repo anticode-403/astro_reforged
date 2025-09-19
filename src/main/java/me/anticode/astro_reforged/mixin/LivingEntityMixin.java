@@ -1,17 +1,12 @@
 package me.anticode.astro_reforged.mixin;
 
 import gravity_changer.api.GravityChangerAPI;
-import me.anticode.astro_reforged.AstroReforged;
-import me.anticode.astro_reforged.api.AstroLivingEntityInterface;
+import me.anticode.astro_reforged.api.AstroEntityInterface;
 import me.anticode.astro_reforged.init.AstroAttributes;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.puffish.attributesmod.api.DynamicModification;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -21,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.*;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin implements AstroLivingEntityInterface {
+public abstract class LivingEntityMixin implements AstroEntityInterface {
     @Unique
     private final HashMap<UUID, Double> gravityModifiers = new HashMap<>();
 
