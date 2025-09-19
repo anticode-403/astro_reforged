@@ -184,6 +184,9 @@ public class GravityBombEntity extends ThrownItemEntity {
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
+        if (entityHitResult.getEntity().isAttackable()) {
+            entityHitResult.getEntity().damage(getWorld().getDamageSources().generic(), 2);
+        }
         setVelocity(getVelocity().multiply(-0.4));
     }
 
