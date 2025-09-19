@@ -27,8 +27,7 @@ public abstract class LivingEntityMixin implements AstroLivingEntityInterface {
 
     @Override
     public void astroReforged$setGravityBombModifier(double gravityModifier, UUID uuid) {
-        if (gravityModifiers.containsKey(uuid)) return;
-        gravityModifiers.put(uuid, gravityModifier);
+        gravityModifiers.putIfAbsent(uuid, gravityModifier);
     }
 
     @Override
