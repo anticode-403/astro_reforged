@@ -23,7 +23,7 @@ import java.util.*;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin implements AstroLivingEntityInterface {
     @Unique
-    private HashMap<UUID, Double> gravityModifiers = new HashMap<>();
+    private final HashMap<UUID, Double> gravityModifiers = new HashMap<>();
 
     @Override
     public void astroReforged$setGravityBombModifier(double gravityModifier, UUID uuid) {
