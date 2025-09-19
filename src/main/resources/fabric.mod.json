@@ -9,7 +9,8 @@
     "Prismatica"
   ],
   "contact": {
-    "anticode": "rileyanticode@gmail.com"
+    "anticode": "rileyanticode@gmail.com",
+    "website": "https://anticode.me/"
   },
   "license": "MIT",
   "icon": "assets/astro_reforged/icon.png",
