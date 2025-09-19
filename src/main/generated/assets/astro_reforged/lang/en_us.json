@@ -7,5 +7,10 @@
   "item.astro_reforged.mauveine_helmet": "Mauveine Helmet",
   "item.astro_reforged.mauveine_ingot": "Mauveine Ingot",
   "item.astro_reforged.mauveine_leggings": "Mauveine Leggings",
-  "item.astro_reforged.mauveine_sabre": "Mauveine Sabre"
+  "item.astro_reforged.mauveine_sabre": "Mauveine Sabre",
+  "item.astro_reforged.mauveine_upgrade_smithing_template.add_slot_desc": "Add Mauveine Ingot",
+  "item.astro_reforged.mauveine_upgrade_smithing_template.applies_to": "Diamond Armor and Sword",
+  "item.astro_reforged.mauveine_upgrade_smithing_template.base_slot_desc": "Add Diamond Gear",
+  "item.astro_reforged.mauveine_upgrade_smithing_template.ingredients": "Mauveine Ingot",
+  "item.astro_reforged.mauveine_upgrade_smithing_template.title": "Mauveine Upgrade"
 }

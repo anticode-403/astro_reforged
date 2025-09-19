@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "astro_reforged:mauveine_ingot"
+  },
+  "base": {
+    "item": "minecraft:diamond_boots"
+  },
+  "result": {
+    "item": "astro_reforged:mauveine_boots"
+  },
+  "template": {
+    "item": "astro_reforged:mauveine_upgrade_smithing_template"
+  }
+}

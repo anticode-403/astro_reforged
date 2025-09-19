@@ -7,9 +7,28 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.advancement.criterion.ConsumeItemCriterion;
+import net.minecraft.advancement.criterion.CriterionConditions;
+import net.minecraft.advancement.criterion.InventoryChangedCriterion;
+import net.minecraft.advancement.criterion.ItemCriterion;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
+import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.RegistryWrapper;
+
+import java.util.List;
+import java.util.function.Consumer;
 
 public class AstroReforgedDataGenerator implements DataGeneratorEntrypoint {
 
@@ -18,6 +37,7 @@ public class AstroReforgedDataGenerator implements DataGeneratorEntrypoint {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
         pack.addProvider(AstroReforgedModelProvider::new);
         pack.addProvider(AstroReforgedEnglishLangProvider::new);
+        pack.addProvider(AstroReforgedRecipeProvider::new);
     }
 
     private static class AstroReforgedModelProvider extends FabricModelProvider {
@@ -42,6 +62,8 @@ public class AstroReforgedDataGenerator implements DataGeneratorEntrypoint {
             itemModelGenerator.register(AstroItems.MAUVEINE_HELMET, Models.GENERATED);
 
             itemModelGenerator.register(AstroItems.MAUVEINE_SABRE, Models.GENERATED);
+
+            itemModelGenerator.register(AstroItems.MAUVEINE_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
         }
     }
 
@@ -63,6 +85,85 @@ public class AstroReforgedDataGenerator implements DataGeneratorEntrypoint {
             translationBuilder.add(AstroItems.MAUVEINE_HELMET, "Mauveine Helmet");
 
             translationBuilder.add(AstroItems.MAUVEINE_SABRE, "Mauveine Sabre");
+
+            translationBuilder.add(AstroReforged.getTranslation("item", AstroItems.must_id + ".applies_to"), "Diamond Armor and Sword");
+            translationBuilder.add(AstroReforged.getTranslation("item", AstroItems.must_id + ".ingredients"), "Mauveine Ingot");
+            translationBuilder.add(AstroReforged.getTranslation("item", AstroItems.must_id + ".title"), "Mauveine Upgrade");
+            translationBuilder.add(AstroReforged.getTranslation("item", AstroItems.must_id + ".base_slot_desc"), "Add Diamond Gear");
+            translationBuilder.add(AstroReforged.getTranslation("item", AstroItems.must_id + ".add_slot_desc"), "Add Mauveine Ingot");
+        }
+    }
+
+    private static class AstroReforgedRecipeProvider extends FabricRecipeProvider {
+        public AstroReforgedRecipeProvider(FabricDataOutput output) {
+            super(output);
+        }
+
+        @Override
+        public void generate(Consumer<RecipeJsonProvider> consumer) {
+            ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, AstroItems.MAUVEINE_INGOT)
+                    .input(Items.NETHERITE_SCRAP, 2)
+                    .input(Items.AMETHYST_CLUSTER, 2)
+                    .criterion("criterion?", InventoryChangedCriterion.Conditions.items(Items.NETHERITE_SCRAP))
+                    .offerTo(consumer);
+            ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, AstroItems.LOW_GRAVITY_BOMB, 16)
+                    .pattern("###")
+                    .pattern("#m#")
+                    .pattern("#i#")
+                    .input('#', Items.GUNPOWDER)
+                    .input('m', AstroItems.MAUVEINE_INGOT)
+                    .input('i', Items.IRON_INGOT)
+                    .criterion("obtain_mauveine", InventoryChangedCriterion.Conditions.items(AstroItems.MAUVEINE_INGOT))
+                    .offerTo(consumer);
+            ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, AstroItems.HIGH_GRAVITY_BOMB, 16)
+                    .pattern("###")
+                    .pattern("#m#")
+                    .pattern("#g#")
+                    .input('#', Items.GUNPOWDER)
+                    .input('m', AstroItems.MAUVEINE_INGOT)
+                    .input('g', Items.GOLD_INGOT)
+                    .criterion("obtain_mauveine", InventoryChangedCriterion.Conditions.items(AstroItems.MAUVEINE_INGOT))
+                    .offerTo(consumer);
+            SmithingTransformRecipeJsonBuilder.create(
+                            Ingredient.ofItems(AstroItems.MAUVEINE_UPGRADE_SMITHING_TEMPLATE),
+                            Ingredient.ofItems(Items.DIAMOND_SWORD),
+                            Ingredient.ofItems(AstroItems.MAUVEINE_INGOT),
+                            RecipeCategory.COMBAT,
+                            AstroItems.MAUVEINE_SABRE)
+                    .criterion("obtain_mauveine", InventoryChangedCriterion.Conditions.items(AstroItems.MAUVEINE_INGOT))
+                    .offerTo(consumer, AstroReforged.getId("smithing/mauveine_sabre_smithing"));
+            SmithingTransformRecipeJsonBuilder.create(
+                            Ingredient.ofItems(AstroItems.MAUVEINE_UPGRADE_SMITHING_TEMPLATE),
+                            Ingredient.ofItems(Items.DIAMOND_HELMET),
+                            Ingredient.ofItems(AstroItems.MAUVEINE_INGOT),
+                            RecipeCategory.COMBAT,
+                            AstroItems.MAUVEINE_HELMET)
+                    .criterion("obtain_mauveine", InventoryChangedCriterion.Conditions.items(AstroItems.MAUVEINE_INGOT))
+                    .offerTo(consumer, AstroReforged.getId("smithing/mauveine_helmet_smithing"));
+            SmithingTransformRecipeJsonBuilder.create(
+                            Ingredient.ofItems(AstroItems.MAUVEINE_UPGRADE_SMITHING_TEMPLATE),
+                            Ingredient.ofItems(Items.DIAMOND_CHESTPLATE),
+                            Ingredient.ofItems(AstroItems.MAUVEINE_INGOT),
+                            RecipeCategory.COMBAT,
+                            AstroItems.MAUVEINE_CHESTPLATE)
+                    .criterion("obtain_mauveine", InventoryChangedCriterion.Conditions.items(AstroItems.MAUVEINE_INGOT))
+                    .offerTo(consumer, AstroReforged.getId("smithing/mauveine_chestplate_smithing"));
+            SmithingTransformRecipeJsonBuilder.create(
+                            Ingredient.ofItems(AstroItems.MAUVEINE_UPGRADE_SMITHING_TEMPLATE),
+                            Ingredient.ofItems(Items.DIAMOND_LEGGINGS),
+                            Ingredient.ofItems(AstroItems.MAUVEINE_INGOT),
+                            RecipeCategory.COMBAT,
+                            AstroItems.MAUVEINE_LEGGINGS)
+                    .criterion("obtain_mauveine", InventoryChangedCriterion.Conditions.items(AstroItems.MAUVEINE_INGOT))
+                    .offerTo(consumer, AstroReforged.getId("smithing/mauveine_leggings_smithing"));
+            SmithingTransformRecipeJsonBuilder.create(
+                            Ingredient.ofItems(AstroItems.MAUVEINE_UPGRADE_SMITHING_TEMPLATE),
+                            Ingredient.ofItems(Items.DIAMOND_BOOTS),
+                            Ingredient.ofItems(AstroItems.MAUVEINE_INGOT),
+                            RecipeCategory.COMBAT,
+                            AstroItems.MAUVEINE_BOOTS)
+                    .criterion("obtain_mauveine", InventoryChangedCriterion.Conditions.items(AstroItems.MAUVEINE_INGOT))
+                    .offerTo(consumer, AstroReforged.getId("smithing/mauveine_boots_smithing"));
         }
     }
 }

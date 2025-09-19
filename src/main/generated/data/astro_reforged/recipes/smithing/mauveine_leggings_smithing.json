@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "astro_reforged:mauveine_ingot"
+  },
+  "base": {
+    "item": "minecraft:diamond_leggings"
+  },
+  "result": {
+    "item": "astro_reforged:mauveine_leggings"
+  },
+  "template": {
+    "item": "astro_reforged:mauveine_upgrade_smithing_template"
+  }
+}

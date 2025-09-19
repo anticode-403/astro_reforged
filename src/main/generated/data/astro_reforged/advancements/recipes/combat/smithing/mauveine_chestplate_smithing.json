@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "astro_reforged:smithing/mauveine_chestplate_smithing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "obtain_mauveine": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "astro_reforged:mauveine_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "obtain_mauveine",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "astro_reforged:smithing/mauveine_chestplate_smithing"
+    ]
+  },
+  "sends_telemetry_event": false
+}

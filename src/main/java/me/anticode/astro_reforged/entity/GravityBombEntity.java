@@ -125,14 +125,16 @@ public class GravityBombEntity extends ThrownItemEntity {
 
     @Override
     public void tick() {
-        if (hasLanded()) {
+        if (hasLanded() && !getWorld().isClient()) {
             active_duration++;
             getWorld().sendEntityStatus(this, (byte)5);
             List<Entity> nearbyEntities = getWorld().getOtherEntities(this, Box.of(this.getPos(), 20D, 20D, 20D));
-            List<Entity> unmodifiedEntities = new ArrayList<>(nearbyEntities);
-            unmodifiedEntities.removeAll(moddedEntities);
-            List<Entity> oldModifiedEntities = new ArrayList<>(moddedEntities);
-            oldModifiedEntities.removeAll(nearbyEntities);
+            List<Entity> unmodifiedEntities = nearbyEntities.stream()
+                    .filter((Entity entity) -> !moddedEntities.contains(entity))
+                    .toList();
+            List<Entity> oldModifiedEntities = moddedEntities.stream()
+                    .filter((Entity entity) -> !nearbyEntities.contains(entity))
+                    .toList();
             for (Entity entity : oldModifiedEntities) {
                 if (entity instanceof LivingEntity) {
                     ((AstroLivingEntityInterface)entity).astroReforged$removeGravityBombModifier(this.getUuid());

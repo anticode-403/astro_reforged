@@ -27,4 +27,6 @@ public class AstroEntities {
                     .trackRangeBlocks(64).trackedUpdateRate(10)
                     .build()
     );
+
+    public static void initialize() {}
 }

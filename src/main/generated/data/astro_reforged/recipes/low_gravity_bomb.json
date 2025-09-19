@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:gunpowder"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "m": {
+      "item": "astro_reforged:mauveine_ingot"
+    }
+  },
+  "pattern": [
+    "###",
+    "#m#",
+    "#i#"
+  ],
+  "result": {
+    "count": 16,
+    "item": "astro_reforged:low_gravity_bomb"
+  },
+  "show_notification": true
+}
