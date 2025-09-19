@@ -146,7 +146,7 @@ public class GravityBombEntity extends ThrownItemEntity {
                             ((AstroLivingEntityInterface)entity).astroReforged$setGravityBombModifier(8, this.getUuid());
                         }
                         case LOW ->  {
-                            ((AstroLivingEntityInterface)entity).astroReforged$setGravityBombModifier(0.5, this.getUuid());
+                            ((AstroLivingEntityInterface)entity).astroReforged$setGravityBombModifier(0.3, this.getUuid());
                         }
                         case ANTI -> {
                             ((AstroLivingEntityInterface)entity).astroReforged$setGravityBombModifier(-0.1, this.getUuid());
