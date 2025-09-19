@@ -6,7 +6,7 @@ import net.minecraft.recipe.Ingredient;
 public class AstroToolMaterials {
     public static final MauveineToolMaterial MAUVEINE_TOOL_MATERIAL = new MauveineToolMaterial();
 
-    private static class MauveineToolMaterial implements ToolMaterial {
+    public static class MauveineToolMaterial implements ToolMaterial {
 
         @Override
         public int getDurability() {
