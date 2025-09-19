@@ -12,15 +12,15 @@ import net.minecraft.util.Identifier;
 
 public class AstroItems {
     public static final Item MAUVEINE_INGOT = register(new Item(new Item.Settings()), "mauveine_ingot");
-    public static final Item LOW_GRAVITY_BOMB = register(new LowGravityBombItem(new Item.Settings()), "low_gravity_bomb");
-    public static final Item HIGH_GRAVITY_BOMB = register(new HighGravityBombItem(new Item.Settings()), "high_gravity_bomb");
+    public static final Item LOW_GRAVITY_BOMB = register(new LowGravityBombItem(new Item.Settings().maxCount(16)), "low_gravity_bomb");
+    public static final Item HIGH_GRAVITY_BOMB = register(new HighGravityBombItem(new Item.Settings().maxCount(16)), "high_gravity_bomb");
 
     public static final Item MAUVEINE_HELMET = register(new MauveineArmorItem(ArmorItem.Type.HELMET, new Item.Settings()), "mauveine_helmet");
     public static final Item MAUVEINE_CHESTPLATE = register(new MauveineArmorItem(ArmorItem.Type.CHESTPLATE, new Item.Settings()), "mauveine_chestplate");
     public static final Item MAUVEINE_LEGGINGS = register(new MauveineArmorItem(ArmorItem.Type.LEGGINGS, new Item.Settings()), "mauveine_leggings");
     public static final Item MAUVEINE_BOOTS = register(new MauveineArmorItem(ArmorItem.Type.BOOTS, new Item.Settings()), "mauveine_boots");
 
-    public static final Item MAUVEINE_SABRE = register(new SwordItem(AstroToolMaterials.MAUVEINE_TOOL_MATERIAL, 4, -2, new Item.Settings().maxCount(1)), "mauveine_sabre");
+    public static final Item MAUVEINE_SABRE = register(new SwordItem(AstroToolMaterials.MAUVEINE_TOOL_MATERIAL, 4, -2, new Item.Settings()), "mauveine_sabre");
 
     public static Item register (Item item, String id) {
         Identifier identifier = AstroReforged.getId(id);
