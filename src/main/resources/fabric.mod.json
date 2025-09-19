@@ -35,6 +35,8 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
-    "minecraft": "${minecraft_version}"
+    "minecraft": "${minecraft_version}",
+    "gravity_changer_q": ">=1.1.2",
+    "puffish_attributes": ">=0.7.4"
   }
 }
