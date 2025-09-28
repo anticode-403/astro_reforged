@@ -124,6 +124,15 @@ public class AstroReforgedDataGenerator implements DataGeneratorEntrypoint {
                     .input('g', Items.GOLD_INGOT)
                     .criterion("obtain_mauveine", InventoryChangedCriterion.Conditions.items(AstroItems.MAUVEINE_INGOT))
                     .offerTo(consumer);
+            ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, AstroItems.MAUVEINE_UPGRADE_SMITHING_TEMPLATE, 2)
+                    .pattern("#t#")
+                    .pattern("#a#")
+                    .pattern("###")
+                    .input('#', Items.DIAMOND)
+                    .input('a', Items.AMETHYST_BLOCK)
+                    .input('t', AstroItems.MAUVEINE_UPGRADE_SMITHING_TEMPLATE)
+                    .criterion("obtain_mauveine", InventoryChangedCriterion.Conditions.items(AstroItems.MAUVEINE_INGOT))
+                    .offerTo(consumer);
             SmithingTransformRecipeJsonBuilder.create(
                             Ingredient.ofItems(AstroItems.MAUVEINE_UPGRADE_SMITHING_TEMPLATE),
                             Ingredient.ofItems(Items.DIAMOND_SWORD),

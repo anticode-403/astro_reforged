@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:diamond"
+    },
+    "a": {
+      "item": "minecraft:amethyst_block"
+    },
+    "t": {
+      "item": "astro_reforged:mauveine_upgrade_smithing_template"
+    }
+  },
+  "pattern": [
+    "#t#",
+    "#a#",
+    "###"
+  ],
+  "result": {
+    "count": 2,
+    "item": "astro_reforged:mauveine_upgrade_smithing_template"
+  },
+  "show_notification": true
+}
