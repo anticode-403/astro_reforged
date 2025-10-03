@@ -53,15 +53,15 @@ public class AstroReforgedDataGenerator implements DataGeneratorEntrypoint {
         @Override
         public void generateItemModels(ItemModelGenerator itemModelGenerator) {
             itemModelGenerator.register(AstroItems.MAUVEINE_INGOT, Models.GENERATED);
-            itemModelGenerator.register(AstroItems.LOW_GRAVITY_BOMB, Models.GENERATED);
-            itemModelGenerator.register(AstroItems.HIGH_GRAVITY_BOMB, Models.GENERATED);
+            itemModelGenerator.register(AstroItems.LOW_GRAVITY_BOMB, Models.HANDHELD);
+            itemModelGenerator.register(AstroItems.HIGH_GRAVITY_BOMB, Models.HANDHELD);
 
             itemModelGenerator.register(AstroItems.MAUVEINE_BOOTS, Models.GENERATED);
             itemModelGenerator.register(AstroItems.MAUVEINE_LEGGINGS, Models.GENERATED);
             itemModelGenerator.register(AstroItems.MAUVEINE_CHESTPLATE, Models.GENERATED);
             itemModelGenerator.register(AstroItems.MAUVEINE_HELMET, Models.GENERATED);
 
-            itemModelGenerator.register(AstroItems.MAUVEINE_SABRE, Models.GENERATED);
+            itemModelGenerator.register(AstroItems.MAUVEINE_SABRE, Models.HANDHELD);
 
             itemModelGenerator.register(AstroItems.MAUVEINE_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
         }
